@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8"></meta>
+
+<!-- css読み込み -->
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/calc.css}">
+<!-- javascript読み込み -->
+<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+
+<title>株</title>
+</head>
+<body>
+	
+		<div class="jumbotron">
+			<h1 class="text-center">株計算</h1>
+		</div>
+		
+		<div class="calc">
+			<form id ="calc" method ="post" th:action="@{/calc}"  th:object="${calcform}" class="calcform" >				
+				<!-- 会社名入力 -->
+				<div class="form-group">
+					<label for ="company">会社名：</label>
+					<input type ="text" th:field ="*{company}" class="form-control" />
+				</div>
+				
+				<!-- 営業利益入力 -->
+				<div class="form-group">
+					<label for ="profit">営業利益:(億円)</label>
+					<input type ="number" step ="0.01" class="form-control"th:field ="*{profit}" />
+				</div>
+				
+				<!--流動資産入力 -->
+				<div class="form-group">
+					<label for ="currentasset">流動資産:(億円)</label>
+					<input type ="number" step ="0.01" class="form-control" th:field ="*{currentasset}"/>
+				</div>
+				
+				<!--流動負債入力 -->
+				<div class="form-group">
+					<label for ="currentliabi">流動負債:(億円)</label>
+					<input type ="number" step ="0.01" class="form-control" th:field ="*{currentliabi}"/>
+				</div>
+				
+				<!--投資その他の資産入力 -->
+				<div class="form-group">
+					<label for ="otherinvest">投資その他の資産:(億円)</label>
+					<input type ="number" step ="0.01" class="form-control" th:field ="*{otherinvest}"/>
+				</div>
+				
+				<!--発行済み株式数：入力 -->
+				<div class="form-group">
+					<label for ="stocks">発行済み株式数:(億株)</label>
+					<input type ="number" step ="0.01" class="form-control" th:field ="*{stocks}"/>
+				</div>
+				<!--固定負債：入力 -->
+				<div class="form-group">
+					<label for ="debt">固定負債:(億円)</label>
+					<input type ="number" step ="0.01" class="form-control" th:field ="*{debt}"/>
+				</div>
+				
+				<input type="submit" value ="登録" class="btn btn-danger w-100 mt-3"/>
+				<!-- value はボタンに表示される文字 -->
+				
+			</form>
+			<div class="text-center m-5">
+				<a th:href ="@{/main}">一覧画面に戻る</a>
+			</div>
+			
+			
+	</div>
+</body>
+</html>

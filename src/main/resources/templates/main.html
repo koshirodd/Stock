@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8"></meta>
+
+<!-- css読み込み -->
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{/css/main.css}">
+
+<!-- javascript読み込み -->
+<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+<script th:src="@{/js/main.js}" defer></script>
+
+<title>株</title>
+</head>
+<body>
+	<div class ="jumbotron">
+		<h1 class="text-center">株一覧</h1>
+	</div>
+	
+	<!-- 企業検索 -->
+	
+	
+	<!-- 登録したやつの一覧表示 -->
+	<div class ="stock">
+		<form th:action="@{/main}" method="post" th:object="${stockform}" id ="stockform">
+			<div class= "size">
+				<!-- 削除ができるようにする。 -->
+				<div class="buttons mb-3 justify-content-around">
+					<a  class="btn btn-dark" th:href ="@{/calc}">価値を計算する</a>
+					<button class="btn btn-outline-danger" type ="submit" id ="deletecompany">Delete</button>
+				</div>
+			
+				<table class="table table-borderd table-hover">
+					<thead class="thead-light">
+						<tr>
+							<th class="th-width">会社名</th>
+							<th class="th-width">財産価値（億円）</th>
+							<th class="th-width">事業価値（億円）</th>
+							<th class="th-width">企業価値(円)</th>
+							<th class="th-width">☑</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="stock:${stocklist}">
+							<td  th:text="${stock.company}"></td>
+							<td  th:text="${stock.assetvalue}"></td>
+							<td  th:text="${stock.busvalue}"></td>
+							<td  th:text="${stock.companyvalue}"></td>
+							<td><input type ="checkbox" th:value ="${stock.id}" th:field="*{checkbox}" th:text="${stock.id}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</form>
+	</div>
+	
+		<!-- 編集で、入力した数値と日付も出てくるようにする。 -->
+	
+	
+	
+	
+	
+
+</body>
+</html>
